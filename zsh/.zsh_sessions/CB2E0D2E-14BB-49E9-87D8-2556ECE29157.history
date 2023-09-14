@@ -1,0 +1,33 @@
+brew
+cd ++++===----___==\\§§§#$%^&*)""{}[ � �÷ææ
+cd 
+ll
+ls
+cd Public
+ll
+cd ..
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install alacritty
+brew install alacritty
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/nikolaspafitis/.zprofile
+brew
+source .zprofile
+brew install alacritty
+  brew install koekeishiya/formulae/skhd\
+  skhd --start-service
+skhd --install-service
+alacritty
+alacritty
+quit
+zsh
+brew install koekeishiya/formulae/yabai
+� yabai --start-service
+echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa"
+cp /opt/homebrew/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
+cp /opt/homebrew/opt/yabai/share/yabai/examples/skhdrc ~/.skhdrc
+ll
+brew install ll
+brew install bat
+yabai --start-service

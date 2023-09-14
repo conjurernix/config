@@ -1,0 +1,11 @@
+brew
+cd ++++===----___==\\§§§#$%^&*)""{}[ � �÷ææ
+cd 
+ll
+ls
+cd Public
+ll
+cd ..
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install alacritty
