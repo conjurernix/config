@@ -1,4 +1,4 @@
-#files: 970	version: 5.9
+#files: 967	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -1308,6 +1308,7 @@ _comps=(
 'scriptreplay' '_script'
 'scselect' '_scselect'
 'scutil' '_scutil'
+'sdk' '_bash_complete -o default -F _sdk'
 'seaf-cli' '_seafile'
 'sed' '_sed'
 'senlin' '_openstack'
@@ -2032,7 +2033,7 @@ autoload -Uz _SUSEconfig __arguments _a2ps _a2utils _aap \
             _zip _zle _zlogin _zmodload _zmv \
             _zoneadm _zones _zparseopts _zpty _zsh \
             _zsh-mime-handler _zsocket _zstyle _ztodo _zypper \
-            _zap _zap _zap _zap
+            _zap
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs
