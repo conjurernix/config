@@ -17,6 +17,7 @@ alias cat=bat
 
 export SDKMAN_DIR="$XDG_DATA_HOME"/sdkman
 export ANDROID_HOME="~/Library/Android/sdk"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 
 # Path
