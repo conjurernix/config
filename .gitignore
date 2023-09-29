@@ -2,3 +2,4 @@
 **/.clojars_credentials
 zsh/.zsh_history
 github-copilot/hosts.json
+.DS_STORE
