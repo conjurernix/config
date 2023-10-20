@@ -5,7 +5,7 @@ plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/exa"
-
+plug "zap-zsh/completions"
 
 # Load and initialise completion system
 autoload -Uz compinit
