@@ -73,4 +73,5 @@ ctrl + alt - s : brew services start yabai
 ctrl + alt - r : brew services restart yabai
 
 # -- Starting Applications --
-ctrl + alt - return : open -n -a "Alacritty"
+ctrl + alt         - return : open -n -a "Alacritty"
+ctrl + shift + alt - return : open -n -a "Google Chrome"
