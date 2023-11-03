@@ -24,9 +24,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # Path
 export PATH=".local/bin:$PATH"
-export PATH=~/Android/Sdk/platform-tools:$PATH
-export PATH=~/Android/Sdk/build-tools:$PATH
-export PATH=~/Android/Sdk/cmdline-tools:$PATH
+export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_HOME/build-tools:$PATH"
+export PATH="$ANDROID_HOME/cmdline-tools:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
