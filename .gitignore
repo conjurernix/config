@@ -3,4 +3,4 @@
 zsh/.zsh_history
 github-copilot/hosts.json
 .DS_STORE
-.android/cache
+.android/cache/
