@@ -30,6 +30,7 @@ export PATH="$ANDROID_HOME/build-tools:$PATH"
 export PATH="$ANDROID_HOME/cmdline-tools:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
+export PATH="/usr/local/texlive/2023basic/bin/universal-darwin/:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
