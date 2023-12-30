@@ -1,0 +1,7 @@
+[user]
+	email = pafitisnick@gmail.com
+	name = DrBuchkov
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = false
