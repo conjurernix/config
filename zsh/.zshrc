@@ -14,6 +14,7 @@ compinit
 # Aliases
 alias ll="ls -la"
 alias cat=bat
+alias convex="$HOME/convex/convex"
 
 #env vars
 
