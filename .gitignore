@@ -5,3 +5,4 @@ github-copilot/hosts.json
 .DS_STORE
 .android/cache/
 clojure/.cpcache/
+zsh/.zcompdump
