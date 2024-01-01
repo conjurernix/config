@@ -21,6 +21,8 @@ export SDKMAN_DIR="$XDG_DATA_HOME"/sdkman
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
 
 # Path
 export PATH=".local/bin:$PATH"
