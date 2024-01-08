@@ -6,3 +6,4 @@ github-copilot/hosts.json
 .android/cache/
 clojure/.cpcache/
 zsh/.zcompdump
+btop/btop.log
