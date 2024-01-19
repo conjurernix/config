@@ -35,6 +35,9 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="/usr/local/texlive/2023basic/bin/universal-darwin/:$PATH"
 
+# asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
