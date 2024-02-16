@@ -144,4 +144,3 @@ basictex
 flutter
 font-fira-code-nerd-font
 font-hack-nerd-font
-temurin8
