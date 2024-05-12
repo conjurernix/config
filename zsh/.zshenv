@@ -1,6 +1,8 @@
 ZDOTDIR=$HOME/.config/zsh
 export OpenMP_ROOT=$(brew --prefix)/opt/libomp
 
+export MPI_ROOT=$(brew info open-mpi | grep -o "$(brew --prefix)/Cellar/open-mpi/[0-9]*\.[0-9]*\.[0-9]*" | head -1)
+
 export MPI_INCLUDE_PATH="$(brew --prefix)/opt/openmpi/include"
 export MPI_LIBRARIES="$(brew --prefix)/opt/openmpi/lib"
 
