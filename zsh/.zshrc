@@ -25,6 +25,17 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
 
+# Completions
+
+## FZF
+source <(fzf --zsh)
+
+## ngrok
+
+if command -v ngrok &>/dev/null; then
+   eval "$(ngrok completion)"
+fi
+
 # Path
 export PATH=".local/bin:$PATH"
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH"
