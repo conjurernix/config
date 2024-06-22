@@ -7,3 +7,5 @@ github-copilot/hosts.json
 clojure/.cpcache/
 zsh/.zcompdump
 btop/btop.log
+github-copilot/cl/
+github-copilot/iu/
