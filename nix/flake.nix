@@ -1,13 +1,17 @@
 {
   description = "Example Darwin system flake";
 
+#  imports = [ <home-manager/nix-darwin> ];
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -41,13 +45,26 @@
        name = "nikolaspafitis";
        home = "/Users/nikolaspafitis";
       };
+
+      home-manager.users.nikolaspafitis = { pkgs, ...}: {
+        home.packages = with pkgs; [
+          curl
+          jq
+          nodejs
+          fzf
+        ];
+        home.stateVersion = "24.11";
+      };
+
+      home-manager.useUserPackages = true;
+      home-manager.useGlobalPkgs = true;
     };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Nikolass-MacBook-Pro
     darwinConfigurations."Nikolass-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [ home-manager.darwinModules.home-manager configuration ];
     };
 
     # Expose the package set, including overlays, for convenience.
