@@ -52,6 +52,8 @@
           jq
           nodejs
           fzf
+          neovim
+	  lazygit
         ];
         home.stateVersion = "24.11";
       };
