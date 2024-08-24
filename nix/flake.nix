@@ -48,6 +48,8 @@
 
       home-manager.users.nikolaspafitis = { pkgs, ...}: {
         home.packages = with pkgs; [
+	  coreutils
+	  wget
           curl
           jq
           nodejs
