@@ -48,14 +48,16 @@
 
       home-manager.users.nikolaspafitis = { pkgs, ...}: {
         home.packages = with pkgs; [
-	  coreutils
-	  wget
+          coreutils
+          wget
           curl
           jq
           nodejs
           fzf
           neovim
-	  lazygit
+          lazygit
+          vpsfree-client
+          wezterm
         ];
         home.stateVersion = "24.11";
       };
