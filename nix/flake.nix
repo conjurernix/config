@@ -63,6 +63,7 @@
           ripgrep
           tldr
           ranger
+          tailwindcss
           vpsfree-client
           # Window Manager and Desktop
           skhd
