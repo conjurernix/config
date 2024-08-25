@@ -57,7 +57,11 @@
           neovim
           lazygit
           vpsfree-client
-          wezterm
+          rustc
+          cargo
+          rustfmt
+          clippy
+          #wezterm
         ];
         home.stateVersion = "24.11";
       };
