@@ -48,6 +48,7 @@
 
       home-manager.users.nikolaspafitis = { pkgs, ...}: {
         home.packages = with pkgs; [
+          # Command Tools
           coreutils
           wget
           curl
@@ -56,17 +57,48 @@
           fzf
           neovim
           lazygit
+          pandoc
+          neofetch
+          ipfetch
+          ripgrep
+          tldr
+          ranger
           vpsfree-client
+          # Window Manager and Desktop
+          skhd
+          kitty
+          # C
+          mpi
+          cmake
+          zeromq
+          # JDK and JVM based
+          jdk21
+          clojure
+          polylith
+          babashka
+          bbin
+          # Rust
           rustc
           cargo
           rustfmt
           clippy
+          # Lua
           (lua.withPackages(ps: with ps; [
               busted
               luafilesystem
               readline
               fennel
             ]))
+          # Python
+          python3
+          # Ops
+          docker_27
+          # terraform
+          #kubernetes
+          #ngrok
+          # DB
+          sqlite
+          postgresql
           #wezterm
         ];
         home.stateVersion = "24.11";
