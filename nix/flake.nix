@@ -61,6 +61,12 @@
           cargo
           rustfmt
           clippy
+          (lua.withPackages(ps: with ps; [
+              busted
+              luafilesystem
+              readline
+              fennel
+            ]))
           #wezterm
         ];
         home.stateVersion = "24.11";
