@@ -55,7 +55,13 @@
           jq
           nodejs
           fzf
+	        #### neovim packages
           neovim
+	        lunarvim
+	        ####
+          #### Emacs
+          emacs
+          ######
           lazygit
           pandoc
           neofetch
