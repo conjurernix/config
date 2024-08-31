@@ -42,6 +42,7 @@ export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="/usr/local/texlive/2023basic/bin/universal-darwin/:$PATH"
 export PATH="$(brew --prefix)/opt/openmpi/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
