@@ -7,6 +7,12 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/exa"
 plug "zap-zsh/completions"
 
+# keybindings
+bindkey "[1;9D" backward-word    # Option + Left Arrow
+bindkey "[1;9C" forward-word     # Option + Right Arrow
+bindkey "[1;5H" beginning-of-line  # Command + Left Arrow
+bindkey "[1;5F" end-of-line        # Command + Right Arrow
+
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
@@ -43,9 +49,6 @@ export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="/usr/local/texlive/2023basic/bin/universal-darwin/:$PATH"
 export PATH="$(brew --prefix)/opt/openmpi/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
-
-# asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

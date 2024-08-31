@@ -52,13 +52,21 @@
           coreutils
           wget
           curl
+	  git
           jq
           nodejs
           fzf
-	        #### neovim packages
+          readline
+	  btop
+	  bat
+	  eza
+	  tree
+	  cloc
+	  fontconfig
+	  #### neovim packages
           neovim
-	        lunarvim
-	        ####
+	  lunarvim
+	  ####
           #### Emacs
           emacs
           ######
@@ -74,6 +82,8 @@
           # Window Manager and Desktop
           skhd
           kitty
+	  ###
+	  cocoapods
           # C
           mpi
           cmake
