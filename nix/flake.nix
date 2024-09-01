@@ -63,6 +63,8 @@
 	  tree
 	  cloc
 	  fontconfig
+	  fd
+	  gnugrep
 	  ## ZSH packages
 	  zsh
 	  oh-my-zsh
