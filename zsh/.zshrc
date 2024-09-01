@@ -8,10 +8,10 @@ plug "zap-zsh/exa"
 plug "zap-zsh/completions"
 
 # keybindings
-bindkey "[1;9D" backward-word    # Option + Left Arrow
-bindkey "[1;9C" forward-word     # Option + Right Arrow
-bindkey "[1;5H" beginning-of-line  # Command + Left Arrow
-bindkey "[1;5F" end-of-line        # Command + Right Arrow
+bindkey ";3D" backward-word    # Option + Left Arrow
+bindkey ";3C" forward-word     # Option + Right Arrow
+bindkey ";9D" beginning-of-line  # Command + Left Arrow
+bindkey ";9C" end-of-line        # Command + Right Arrow
 
 # Load and initialise completion system
 autoload -Uz compinit

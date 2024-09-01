@@ -63,6 +63,9 @@
 	  tree
 	  cloc
 	  fontconfig
+	  ## ZSH packages
+	  zsh
+	  oh-my-zsh
 	  #### neovim packages
           neovim
 	  lunarvim
