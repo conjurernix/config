@@ -86,6 +86,8 @@
           vpsfree-client
           # Window Manager and Desktop
           skhd
+	  sketchybar
+	  ######
           kitty
 	  ###
 	  cocoapods
