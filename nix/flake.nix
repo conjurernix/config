@@ -130,6 +130,8 @@
 
       home-manager.useUserPackages = true;
       home-manager.useGlobalPkgs = true;
+
+      services.sketchybar.enable = true;
     };
   in
   {
