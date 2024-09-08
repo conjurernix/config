@@ -21,7 +21,7 @@ compinit
 alias ll="ls -la"
 alias cat=bat
 alias convex="$HOME/convex/convex"
-
+alias biff="clj -M:dev"
 #env vars
 
 export SDKMAN_DIR="$XDG_DATA_HOME"/sdkman
