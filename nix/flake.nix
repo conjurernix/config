@@ -72,9 +72,9 @@
           neovim
 	  lunarvim
 	  ####
-          #### Emacs
-          emacs
-          ######
+	  #### Fonts
+	  fira
+	  ######
           lazygit
           pandoc
           neofetch
