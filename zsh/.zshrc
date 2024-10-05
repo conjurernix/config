@@ -45,8 +45,6 @@ export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/build-tools:$PATH"
 export PATH="$ANDROID_HOME/cmdline-tools:$PATH"
 export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
-export PATH="$HOME/anaconda3/bin:$PATH"
-export PATH="/usr/local/texlive/2023basic/bin/universal-darwin/:$PATH"
 export PATH="$(brew --prefix)/opt/openmpi/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
