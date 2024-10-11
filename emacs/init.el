@@ -66,9 +66,9 @@
 
 ;; Keybindings
 
-(global-set-key (kbd "s-<left>")  'windmove-left)
-(global-set-key (kbd "s-<right>") 'windmove-right)
-(global-set-key (kbd "s-<down>")  'windmove-down)
-(global-set-key (kbd "s-<up>")    'windmove-up)
+(global-set-key (kbd "C-s-<left>")  'windmove-left)
+(global-set-key (kbd "C-s-<right>") 'windmove-right)
+(global-set-key (kbd "C-s-<down>")  'windmove-down)
+(global-set-key (kbd "C-s-<up>")    'windmove-up)
 (global-set-key (kbd "M-q")       'kill-buffer-and-window)
 (global-set-key (kbd "C-s-f")     'toggle-frame-fullscreen)
