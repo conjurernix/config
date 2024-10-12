@@ -64,11 +64,26 @@
     (add-to-list 'lsp-language-id-configuration
 		 `(,m . "clojure"))))
 
+(use-package paredit
+  :ensure t
+  :hook ((emacs-lisp-mode    . enable-paredit-mode)
+	 (lisp-mode          . enable-paredit-mode)
+	 (cider-mode         . enable-paredit-mode)
+	 (clojure-mode       . enable-paredit-mode)
+	 (clojurec-mode      . enable-paredit-mode)
+	 (clojurescript-mode . enable-paredit-mode)
+	 (clojurex-mode      . enable-paredit-mode))
+  :config
+  (progn
+    (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+    (show-paren-mode t)))
+
 ;; Keybindings
 
 (global-set-key (kbd "C-s-<left>")  'windmove-left)
 (global-set-key (kbd "C-s-<right>") 'windmove-right)
 (global-set-key (kbd "C-s-<down>")  'windmove-down)
 (global-set-key (kbd "C-s-<up>")    'windmove-up)
-(global-set-key (kbd "M-q")       'kill-buffer-and-window)
-(global-set-key (kbd "C-s-f")     'toggle-frame-fullscreen)
+(global-set-key (kbd "M-s-q")       'kill-buffer-and-window)
+(global-set-key (kbd "M-q")         'kill-buffer)
+(global-set-key (kbd "C-s-f")       'toggle-frame-fullscreen)
