@@ -72,6 +72,7 @@
             neovim
 	          lunarvim
 	          ####
+		  emacs
 	          #### Fonts
 	          fira
 	          ######

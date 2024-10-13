@@ -1,3 +1,4 @@
+
 (setq inhibit-startup-message t)
 (setq make-backup-files nil)
 (scroll-bar-mode -1)
@@ -9,8 +10,8 @@
 ; Font and Theme
 (set-face-attribute 'default nil :font "Monospace" :height 280)
 
-(when (eq system-type 'darwin) ; macOS
-     (add-to-list 'default-frame-alist '(undecorated . t)))
+;; (when (eq system-type 'darwin) ; macOS
+;;      (add-to-list 'default-frame-alist '(undecorated . t)))
 
 ; Package
 (require 'package)
