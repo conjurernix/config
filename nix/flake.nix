@@ -93,6 +93,8 @@
 	          ###
 	          cocoapods
             # C
+	    ninja
+	    meson
             mpi
             cmake
             zeromq
