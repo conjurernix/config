@@ -28,6 +28,18 @@ export SDKMAN_DIR="$XDG_DATA_HOME"/sdkman
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# OMP and MPI vars
+
+export OpenMP_ROOT=$(brew --prefix)/opt/libomp
+
+export MPI_ROOT=$(brew info open-mpi | grep -o "$(brew --prefix)/Cellar/open-mpi/[0-9]*\.[0-9]*\.[0-9]*" | head -1)
+
+export MPI_INCLUDE_PATH="$(brew --prefix)/opt/openmpi/include"
+export MPI_LIBRARIES="$(brew --prefix)/opt/openmpi/lib"
+
+export MPI_COMPILE_FLAGS="-I$(brew --prefix)/opt/openmpi/include"
+export MPI_LINK_FLAGS="-L$(brew --prefix)/opt/openmpi/lib -lmpi"
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
 source <(fzf --zsh)
