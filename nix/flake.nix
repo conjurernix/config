@@ -58,22 +58,22 @@
             btop
             bat
             eza
-	          tree
-	          cloc
-	          fontconfig
-	          fd
-	          gnugrep
-	          ## ZSH packages
-	          zsh
-	          oh-my-zsh
-	          #### neovim packages
+	    tree
+	    cloc
+	    fontconfig
+	    fd
+	    gnugrep
+	    ## ZSH packages
+	    zsh
+	    oh-my-zsh
+	    #### neovim packages
             neovim
-	          lunarvim
-	          ####
-		  emacs
-	          #### Fonts
-	          fira
-	          ######
+	    lunarvim
+	    ####
+	    emacs
+	    #### Fonts
+	    fira
+	    ######
             lazygit
             pandoc
             neofetch
@@ -85,11 +85,11 @@
             vpsfree-client
             # Window Manager and Desktop
             skhd
-	          sketchybar
-	          ######
+	    sketchybar
+	    ######
             kitty
-	          ###
-	          cocoapods
+	    ###
+	    cocoapods
             # C
 	    ninja
 	    meson
