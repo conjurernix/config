@@ -63,6 +63,7 @@
             fontconfig
             fd
             gnugrep
+	    yazi
             ## ZSH packages
             zsh
             oh-my-zsh
@@ -96,6 +97,8 @@
             mpi
             cmake
             zeromq
+	    # Go
+	    go
             # JDK and JVM based
             jdk21
             clojure
