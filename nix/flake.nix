@@ -52,7 +52,6 @@
             curl
             git
             jq
-            nodejs
             fzf
             readline
             btop
@@ -64,6 +63,7 @@
             fd
             gnugrep
 	    yazi
+	    wireshark
             ## ZSH packages
             zsh
             oh-my-zsh
@@ -91,6 +91,7 @@
             kitty
             ###
             cocoapods
+	    # IDE
             # C
             ninja
             meson
@@ -128,7 +129,15 @@
             # DB
             sqlite
             postgresql
-            #wezterm
+            # Web
+	    #nodejs
+	    bun
+	    pnpm
+	    deno
+	    # Web3
+	    # framesh
+	    # solana-cli
+	    # anchor
           ];
           home.stateVersion = "24.11";
         };

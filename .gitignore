@@ -9,3 +9,4 @@ zsh/.zcompdump
 btop/btop.log
 github-copilot/cl/
 github-copilot/iu/
+yarn/global/node_modules/

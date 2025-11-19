@@ -49,6 +49,12 @@ if command -v ngrok &>/dev/null; then
    eval "$(ngrok completion)"
 fi
 
+export PNPM_HOME="/Users/nikolaspafitis/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # Path
 export PATH=".local/bin:$PATH"
 export PATH="$HOME/.privates:$PATH"
