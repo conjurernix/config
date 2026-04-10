@@ -17,11 +17,11 @@
         environment.systemPackages =
           [ pkgs.vim
           ];
-
-        # Auto upgrade nix package and the daemon service.
-        services.nix-daemon.enable = true;
+        
+        system.primaryUser = "nikolaspafitis";
+        ids.gids.nixbld = 350;
         # nix.package = pkgs.nix;
-
+        
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
 
@@ -59,6 +59,7 @@
             eza
             tree
             cloc
+	    direnv
             fontconfig
             fd
             gnugrep
@@ -104,6 +105,7 @@
             jdk21
             clojure
             clojure-lsp
+	    leiningen
             polylith
             babashka
             bbin
@@ -122,7 +124,7 @@
             # Python
             python3
             # Ops
-            docker_27
+            docker_28
             # terraform
             #kubernetes
             #ngrok
@@ -138,6 +140,11 @@
 	    # framesh
 	    # solana-cli
 	    # anchor
+            # AI
+            # ollama
+
+	    # cloud
+	    google-cloud-sdk
           ];
           home.stateVersion = "24.11";
         };

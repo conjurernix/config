@@ -10,3 +10,7 @@ btop/btop.log
 github-copilot/cl/
 github-copilot/iu/
 yarn/global/node_modules/
+gcloud/
+cagent/
+raycast/extensions/
+nvm/

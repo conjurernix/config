@@ -6,6 +6,7 @@ plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/exa"
 plug "zap-zsh/completions"
+plug "zpm-zsh/clipboard"
 
 # keybindings
 bindkey ";3D" backward-word    # Option + Left Arrow
@@ -40,6 +41,11 @@ export MPI_LIBRARIES="$(brew --prefix)/opt/openmpi/lib"
 export MPI_COMPILE_FLAGS="-I$(brew --prefix)/opt/openmpi/include"
 export MPI_LINK_FLAGS="-L$(brew --prefix)/opt/openmpi/lib -lmpi"
 
+export OLLAMA_HOST="0.0.0.0"
+
+# direnv
+eval "$(direnv hook zsh)"
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.config/fzf/.fzf.zsh
 source <(fzf --zsh)
@@ -55,6 +61,11 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# NVM
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Path
 export PATH=".local/bin:$PATH"
 export PATH="$HOME/.privates:$PATH"
@@ -65,6 +76,7 @@ export PATH="$ANDROID_HOME/cmdline-tools:$PATH"
 export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 export PATH="$(brew --prefix)/opt/openmpi/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
