@@ -9,6 +9,8 @@ zsh/.zcompdump
 btop/btop.log
 github-copilot/cl/
 github-copilot/iu/
+github-copilot/apps.json
+github-copilot/oauth.json
 yarn/global/node_modules/
 gcloud/
 cagent/

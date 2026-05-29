@@ -8,6 +8,8 @@ plug "zap-zsh/exa"
 plug "zap-zsh/completions"
 plug "zpm-zsh/clipboard"
 
+export PATH="/opt/homebrew/bin/:$PATH"
+
 # keybindings
 bindkey ";3D" backward-word    # Option + Left Arrow
 bindkey ";3C" forward-word     # Option + Right Arrow

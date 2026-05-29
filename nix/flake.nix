@@ -70,7 +70,7 @@
             oh-my-zsh
             #### neovim packages
             neovim
-            lunarvim
+            # lunarvim
             ####
             emacs
             #### Fonts
@@ -78,13 +78,14 @@
             ######
             lazygit
             pandoc
-            neofetch
+            # neofetch
             ipfetch
             ripgrep
             tldr
             ranger
             tailwindcss
             vpsfree-client
+	    graphviz
             # Window Manager and Desktop
             skhd
             sketchybar
@@ -109,6 +110,7 @@
             polylith
             babashka
             bbin
+	    clj-kondo
             # Rust
             rustc
             cargo
@@ -141,7 +143,7 @@
 	    # solana-cli
 	    # anchor
             # AI
-            # ollama
+            ollama
 
 	    # cloud
 	    google-cloud-sdk
