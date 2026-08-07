@@ -1,0 +1,8 @@
+{
+  "trustedformulae": [
+    "clojure/tools/clojure"
+  ],
+  "trustedtaps": [
+    "clojure/tools"
+  ]
+}

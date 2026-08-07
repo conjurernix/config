@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "marketplaces": [
+    "github/copilot-plugins",
+    "github/awesome-copilot#marketplace"
+  ]
+}

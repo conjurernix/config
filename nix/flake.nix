@@ -39,6 +39,9 @@
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
 
+
+	nixpkgs.config.allowUnfree = true;
+
         users.users.nikolaspafitis = {
           name = "nikolaspafitis";
           home = "/Users/nikolaspafitis";
@@ -104,13 +107,13 @@
 	    go
             # JDK and JVM based
             jdk21
-            clojure
-            clojure-lsp
-	    leiningen
-            polylith
-            babashka
-            bbin
-	    clj-kondo
+            # clojure
+            # clojure-lsp
+	    # leiningen
+	    #        polylith
+	    #        babashka
+	    #        bbin
+	    # clj-kondo
             # Rust
             rustc
             cargo
@@ -127,7 +130,7 @@
             python3
             # Ops
             docker_28
-            # terraform
+            terraform
             #kubernetes
             #ngrok
             # DB
