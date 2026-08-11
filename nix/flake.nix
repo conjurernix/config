@@ -113,7 +113,7 @@
 	    #        polylith
 	    #        babashka
 	    #        bbin
-	    # clj-kondo
+	    clj-kondo
             # Rust
             rustc
             cargo
