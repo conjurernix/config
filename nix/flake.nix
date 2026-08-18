@@ -55,6 +55,8 @@
             curl
             git
             jq
+	    htmlq
+	    fq
             fzf
             readline
             btop
@@ -129,7 +131,7 @@
             # Python
             python3
             # Ops
-            docker_28
+            docker
             terraform
             #kubernetes
             #ngrok
@@ -147,9 +149,12 @@
 	    # anchor
             # AI
             ollama
-
+	    claude-code
 	    # cloud
 	    google-cloud-sdk
+	    awscli2
+
+	    sl
           ];
           home.stateVersion = "24.11";
         };

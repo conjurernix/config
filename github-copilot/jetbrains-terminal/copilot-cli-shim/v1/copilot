@@ -1,0 +1,283 @@
+#!/bin/sh
+
+INSTALL_DOCS_URL="https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli"
+MISSING_CLI_MESSAGE="Cannot find GitHub Copilot CLI ($INSTALL_DOCS_URL)"
+
+canonical_directory() {
+    (
+        unset CDPATH
+        cd "$1" 2>/dev/null && pwd -P
+    )
+}
+
+# Records one install funnel action as an empty marker file the IDE later maps to telemetry.
+# Failure must never alter command behavior, so every step degrades to a silent no-op.
+write_install_event() {
+    event_directory=${COPILOT_CLI_INSTALL_EVENT_DIR-}
+    [ -n "$event_directory" ] || return 0
+    # Empty marker; the IDE creates the directory, so no external coreutils are needed. The PID
+    # uniquely identifies this invocation and the action distinguishes its at-most-two markers.
+    : > "$event_directory/v1.$1.$$.event" 2>/dev/null || return 0
+}
+
+case "$0" in
+    */*) shim_parent=${0%/*} ;;
+    *) shim_parent=. ;;
+esac
+
+shim_directory=$(canonical_directory "$shim_parent")
+if [ -z "$shim_directory" ]; then
+    printf '%s\n' "Unable to locate the GitHub Copilot CLI shim directory." >&2
+    exit 127
+fi
+
+path_without_shim=
+first_path_entry=1
+remaining_path=${PATH-}
+while :; do
+    case "$remaining_path" in
+        *:*)
+            entry=${remaining_path%%:*}
+            remaining_path=${remaining_path#*:}
+            has_more_entries=1
+            ;;
+        *)
+            entry=$remaining_path
+            has_more_entries=0
+            ;;
+    esac
+
+    lookup_entry=$entry
+    [ -n "$lookup_entry" ] || lookup_entry=.
+    canonical_entry=$(canonical_directory "$lookup_entry")
+    [ -n "$canonical_entry" ] || canonical_entry=$lookup_entry
+    if [ "$canonical_entry" = "$shim_directory" ]; then
+        :
+    elif [ "$first_path_entry" -eq 1 ]; then
+        path_without_shim=$entry
+        first_path_entry=0
+    else
+        path_without_shim=$path_without_shim:$entry
+    fi
+
+    [ "$has_more_entries" -eq 1 ] || break
+done
+PATH=$path_without_shim
+export PATH
+
+add_install_directory_to_path() {
+    install_directory=$1
+    [ -n "$install_directory" ] || return
+    [ -d "$install_directory" ] || return
+
+    canonical_install_directory=$(canonical_directory "$install_directory")
+    [ -n "$canonical_install_directory" ] || canonical_install_directory=$install_directory
+    [ "$canonical_install_directory" = "$shim_directory" ] && return
+
+    case ":${PATH-}:" in
+        *:"$install_directory":*) ;;
+        *) PATH=${PATH:+"$PATH:"}$install_directory ;;
+    esac
+}
+
+refresh_install_paths() {
+    if [ -n "${HOME-}" ]; then
+        add_install_directory_to_path "$HOME/.local/bin"
+    fi
+    if [ -n "${PREFIX-}" ]; then
+        add_install_directory_to_path "$PREFIX/bin"
+    fi
+    if [ -n "${NPM_CONFIG_PREFIX-}" ]; then
+        add_install_directory_to_path "$NPM_CONFIG_PREFIX/bin"
+    fi
+    if command -v npm >/dev/null 2>&1; then
+        npm_prefix=$(npm prefix -g 2>/dev/null)
+        if [ -n "$npm_prefix" ]; then
+            add_install_directory_to_path "$npm_prefix/bin"
+        fi
+    fi
+
+    # Standard system install locations checked after PATH. Colon-separated and
+    # overridable (default: the real system bin directories) so tests can run
+    # hermetically without discovering a machine-wide Copilot CLI.
+    remaining_system_directories=${COPILOT_CLI_SHIM_SYSTEM_BIN_DIRS-/usr/local/bin:/opt/homebrew/bin}
+    while [ -n "$remaining_system_directories" ]; do
+        case "$remaining_system_directories" in
+            *:*)
+                system_directory=${remaining_system_directories%%:*}
+                remaining_system_directories=${remaining_system_directories#*:}
+                ;;
+            *)
+                system_directory=$remaining_system_directories
+                remaining_system_directories=
+                ;;
+        esac
+        add_install_directory_to_path "$system_directory"
+    done
+    export PATH
+}
+
+find_real_copilot() {
+    search_path=${PATH-}
+    while :; do
+        case "$search_path" in
+            *:*)
+                search_directory=${search_path%%:*}
+                search_path=${search_path#*:}
+                has_more_search_entries=1
+                ;;
+            *)
+                search_directory=$search_path
+                has_more_search_entries=0
+                ;;
+        esac
+
+        [ -n "$search_directory" ] || search_directory=.
+        candidate=$search_directory/copilot
+        if [ -f "$candidate" ] && [ -x "$candidate" ]; then
+            if [ "$candidate" -ef "$0" ] 2>/dev/null; then
+                :
+            else
+                printf '%s\n' "$candidate"
+                return 0
+            fi
+        fi
+
+        [ "$has_more_search_entries" -eq 1 ] || break
+    done
+    return 1
+}
+
+# npm installation requires Node.js 22 or later:
+# https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli#installing-with-npm-all-platforms
+npm_has_supported_node() {
+    command -v node >/dev/null 2>&1 || return 1
+    node_major=$(node -p "process.versions.node.split('.')[0]" 2>/dev/null)
+    case "$node_major" in
+        ''|*[!0-9]*) return 1 ;;
+        *) [ "$node_major" -ge 22 ] ;;
+    esac
+}
+
+try_install_with_npm() {
+    command -v npm >/dev/null 2>&1 || return 1
+    if ! npm_has_supported_node; then
+        printf '%s\n' "Skipping npm: GitHub Copilot CLI requires Node.js 22 or later." >&2
+        return 1
+    fi
+
+    printf '%s\n' "Installing GitHub Copilot CLI with npm..." >&2
+    npm install -g @github/copilot && return 0
+    printf '%s\n' "npm installation failed." >&2
+    return 1
+}
+
+try_install_with_brew() {
+    command -v brew >/dev/null 2>&1 || return 1
+    printf '%s\n' "Installing GitHub Copilot CLI with Homebrew..." >&2
+    brew install --cask copilot-cli && return 0
+    printf '%s\n' "Homebrew installation failed." >&2
+    return 1
+}
+
+try_install_with_curl() {
+    command -v curl >/dev/null 2>&1 || return 1
+    command -v bash >/dev/null 2>&1 || return 1
+    printf '%s\n' "Installing GitHub Copilot CLI with the official install script..." >&2
+    curl -fsSL https://gh.io/copilot-install | bash && return 0
+    printf '%s\n' "The curl installer failed." >&2
+    return 1
+}
+
+try_install_with_wget() {
+    command -v wget >/dev/null 2>&1 || return 1
+    command -v bash >/dev/null 2>&1 || return 1
+    printf '%s\n' "Installing GitHub Copilot CLI with the official install script..." >&2
+    wget -qO- https://gh.io/copilot-install | bash && return 0
+    printf '%s\n' "The wget installer failed." >&2
+    return 1
+}
+
+install_copilot_cli() {
+    try_install_with_npm && return 0
+    try_install_with_brew && return 0
+    try_install_with_curl && return 0
+    try_install_with_wget && return 0
+
+    printf 'No supported installer succeeded. Install GitHub Copilot CLI from: %s\n' "$INSTALL_DOCS_URL" >&2
+    return 1
+}
+
+main() {
+    # Report where the CLI would be found and exit, so callers need no copy of these rules.
+    if [ -n "${COPILOT_CLI_SHIM_RESOLVE_ONLY-}" ]; then
+        refresh_install_paths
+        find_real_copilot
+        exit $?
+    fi
+
+    refresh_install_paths
+    real_copilot=$(find_real_copilot)
+    if [ -n "$real_copilot" ]; then
+        exec "$real_copilot" "$@"
+    fi
+
+    printf '%s\n' "$MISSING_CLI_MESSAGE" >&2
+    if [ ! -t 0 ] || [ ! -t 1 ]; then
+        exit 127
+    fi
+
+    installers=
+    if command -v npm >/dev/null 2>&1 && npm_has_supported_node; then
+        installers="npm"
+    fi
+    if command -v brew >/dev/null 2>&1; then
+        installers="${installers:+$installers, then }Homebrew"
+    fi
+    if command -v bash >/dev/null 2>&1 && { command -v curl >/dev/null 2>&1 || command -v wget >/dev/null 2>&1; }; then
+        installers="${installers:+$installers, then }download and execute the official install script"
+    fi
+
+    if [ -z "$installers" ]; then
+        printf 'No supported installer is available. Install GitHub Copilot CLI from: %s\n' "$INSTALL_DOCS_URL" >&2
+        exit 127
+    fi
+
+    printf 'Install GitHub Copilot CLI using %s? [y/N] ' "$installers" >&2
+    write_install_event promptShown
+    IFS= read -r response || response=
+    case "$response" in
+        y|Y|yes|YES|Yes)
+            write_install_event accepted
+            ;;
+        *)
+            write_install_event declined
+            exit 127
+            ;;
+    esac
+
+    if install_copilot_cli; then
+        install_status=0
+    else
+        install_status=$?
+    fi
+
+    hash -r 2>/dev/null || true
+    refresh_install_paths
+    real_copilot=$(find_real_copilot)
+    if [ -n "$real_copilot" ]; then
+        write_install_event installSucceeded
+        exec "$real_copilot" "$@"
+    fi
+
+    write_install_event installFailed
+    if [ "$install_status" -ne 0 ]; then
+        printf 'GitHub Copilot CLI installation failed with exit code %s.\n' "$install_status" >&2
+    else
+        printf '%s\n' "Installation finished, but the copilot command is not available in this terminal." >&2
+    fi
+    printf 'Restart the terminal or follow: %s\n' "$INSTALL_DOCS_URL" >&2
+    exit 127
+}
+
+main "$@"
